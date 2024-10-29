@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensibilisation à la Cybersécurité</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <style>
         :root {
             --primary: #3b82f6;
@@ -31,9 +33,27 @@
             background: var(--background);
         }
 
+        /* Barre de progression fixe en haut */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
         .hero {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            min-height: 60vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -54,6 +74,12 @@
             background-size: cover;
             background-position: center;
             opacity: 0.1;
+            animation: wave 10s infinite linear;
+        }
+
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1440px; }
         }
 
         .hero-content {
@@ -64,10 +90,22 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
             font-weight: 800;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .container {
@@ -88,11 +126,30 @@
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
             transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .card:hover::before {
+            transform: scaleY(1);
         }
 
         .icon-box {
@@ -104,6 +161,11 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .icon-box i {
@@ -118,6 +180,12 @@
             margin: 2rem 0;
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transform: translateX(-100%);
+            animation: slideRight 0.5s forwards;
+        }
+
+        @keyframes slideRight {
+            to { transform: translateX(0); }
         }
 
         .code-section {
@@ -125,7 +193,7 @@
             border-radius: 1rem;
             padding: 2rem;
             margin: 2rem 0;
-            overflow-x: auto;
+            overflow: hidden;
         }
 
         .code-title {
@@ -134,6 +202,17 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .code-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
         }
 
         .code-content {
@@ -143,10 +222,46 @@
             font-family: monospace;
             color: #e0e0e0;
             line-height: 1.4;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+            background-size: 200% 200%;
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% 200%; }
         }
 
         .highlight {
             color: var(--danger);
+            position: relative;
+            padding: 0 4px;
+        }
+
+        .highlight::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--danger);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight:hover::before {
+            transform: scaleX(1);
         }
 
         .quiz-section {
@@ -163,22 +278,129 @@
             margin: 0.5rem 0;
             border-radius: 0.5rem;
             cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .quiz-option:hover {
-            background: #e2e8f0;
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .quiz-option:hover::before {
+            left: 100%;
         }
 
         .quiz-option.correct {
             background: #dcfce7;
             color: var(--success);
+            transform: translateX(10px);
         }
 
         .quiz-option.wrong {
             background: #fee2e2;
             color: var(--danger);
+            transform: translateX(10px);
         }
 
+        /* Nouveau style pour la timeline */
+        .timeline {
+            position: relative;
+            margin: 4rem 0;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin: 2rem 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 30px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            position: relative;
+            width: 80%;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: auto;
+            left: -15px;
+        }
+
+        /* Nouveau style pour les stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Améliorations des boutons */
         button {
             background: var(--primary);
             color: white;
@@ -187,10 +409,23 @@
             border-radius: 0.5rem;
             cursor: pointer;
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
         }
 
-        button:hover {
-            background: var(--primary-dark);
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
         }
 
         footer {
@@ -199,6 +434,24 @@
             padding: 3rem 2rem;
             margin-top: 4rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--success), var(--primary));
+            animation: rainbow 5s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position-x: 0%; }
+            100% { background-position-x: 200%; }
         }
 
         @media (max-width: 768px) {
@@ -208,118 +461,34 @@
             .container {
                 padding: 1rem;
             }
+            .timeline::before {
+                left: 0;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 30px;
+                padding-right: 0;
+            }
+            .timeline-item:nth-child(odd) {
+                justify-content: flex-start;
+            }
+            .timeline-content {
+                width: 100%;
+            }
+            .timeline-content::before {
+                left: -15px;
+                right: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="hero-content">
-            <h1>⚠️ Test de Phishing Détecté</h1>
-            <p style="font-size: 1.25rem; opacity: 0.9;">Votre sécurité est notre priorité. Découvrez comment vous protéger.</p>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="alert">
-            <h3 style="color: var(--danger); margin-bottom: 0.5rem;">
-                <i class="fas fa-shield-alt"></i> Information Importante
-            </h3>
-            <p>Ce test de phishing a été réalisé dans le cadre de notre programme de sensibilisation à la sécurité. Aucune donnée n'a été collectée ou compromise.</p>
-        </div>
-
-        <h2 style="margin: 3rem 0 2rem; text-align: center; font-size: 2rem;">Comment le Phishing Fonctionne-t-il ?</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="icon-box">
-                    <i class="fas fa-link"></i>
-                </div>
-                <h3>URLs Trompeuses</h3>
-                <p>Les attaquants utilisent des URLs qui ressemblent à des sites légitimes pour vous induire en erreur.</p>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <i class="fas fa-copy"></i>
-                </div>
-                <h3>Clone de Site</h3>
-                <p>Les pages de phishing sont des copies quasi parfaites des sites officiels.</p>
-            </div>
-            <div class="card">
-                <div class="icon-box">
-                    <i class="fas fa-exclamation-circle"></i>
-                </div>
-                <h3>Urgence Factice</h3>
-                <p>Les messages créent un faux sentiment d'urgence pour vous faire agir rapidement.</p>
-            </div>
-        </div>
-
-        <div class="code-section">
-            <div class="code-title">
-                <i class="fas fa-code"></i> Code Utilisé Dans Ce Test
-            </div>
-            <div class="code-content">
-                <pre><code>// Redirection masquée
-&lt;a href="http://nousommesvenom@<span class="highlight">10.30.3.102</span>?rid=vE5lmhH"&gt;
-    Connexion sécurisée
-&lt;/a&gt;
-
-// Formulaire de capture
-&lt;form id="form" action="" method="POST"&gt;
-    &lt;script&gt;
-        window.onload = function() {
-            var form = document.getElementById('form');
-            form.action = "http://nousommesvenom@" + 
-                         "<span class="highlight">{{.URL}}</span>".replace("http://", "");
-        }
-    &lt;/script&gt;
-&lt;/form&gt;</code></pre>
-            </div>
-        </div>
-
-        <div class="quiz-section">
-            <h2 style="margin-bottom: 2rem;">Testez Vos Connaissances</h2>
-            <div id="quiz">
-                <p style="margin-bottom: 1rem;">Que faire si vous recevez un email urgent demandant vos identifiants ?</p>
-                <div class="quiz-option" onclick="this.classList.add('wrong')">
-                    <i class="fas fa-circle"></i> Cliquer sur le lien et entrer mes identifiants rapidement
-                </div>
-                <div class="quiz-option" onclick="this.classList.add('correct')">
-                    <i class="fas fa-circle"></i> Contacter directement le service concerné par un canal officiel
-                </div>
-                <div class="quiz-option" onclick="this.classList.add('wrong')">
-                    <i class="fas fa-circle"></i> Transférer l'email à mes collègues pour avoir leur avis
-                </div>
-            </div>
-        </div>
-
-        <h2 style="margin: 3rem 0 2rem; text-align: center; font-size: 2rem;">Bonnes Pratiques</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="icon-box" style="background: var(--success)">
-                    <i class="fas fa-check"></i>
-                </div>
-                <h3>Vérifiez l'URL</h3>
-                <p>Examinez toujours l'adresse complète dans la barre de navigation avant de saisir des informations.</p>
-            </div>
-            <div class="card">
-                <div class="icon-box" style="background: var(--success)">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <h3>Double Authentification</h3>
-                <p>Activez la 2FA sur tous vos comptes importants quand c'est possible.</p>
-            </div>
-            <div class="card">
-                <div class="icon-box" style="background: var(--success)">
-                    <i class="fas fa-question-circle"></i>
-                </div>
-                <h3>En Cas de Doute</h3>
-                <p>Contactez votre service IT ou le support officiel par un canal vérifié.</p>
-            </div>
-        </div>
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <footer>
-        <p>© 2024 - Page de sensibilisation à la sécurité</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Créé dans le cadre de la formation à la cybersécurité</p>
-    </footer>
-</body>
-</html>
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>⚠️ Test de Phishing Détecté</h1>
+            <p style="font-size: 1.25rem; opacity: 0.9;">Votre vigilance est notre meilleure défense contre les cyberatta
