@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensibilisation à la Cybersécurité</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <style>
         :root {
             --primary: #3b82f6;
@@ -33,27 +31,9 @@
             background: var(--background);
         }
 
-        /* Barre de progression fixe en haut */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 1000;
-        }
-
-        .progress-bar {
-            height: 4px;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
         .hero {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            min-height: 80vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -74,12 +54,6 @@
             background-size: cover;
             background-position: center;
             opacity: 0.1;
-            animation: wave 10s infinite linear;
-        }
-
-        @keyframes wave {
-            0% { background-position-x: 0; }
-            100% { background-position-x: 1440px; }
         }
 
         .hero-content {
@@ -90,22 +64,10 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
             font-weight: 800;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            animation: slideIn 1s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .container {
@@ -126,30 +88,11 @@
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-            transform: scaleY(0);
             transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px -3px rgba(0,0,0,0.1);
-        }
-
-        .card:hover::before {
-            transform: scaleY(1);
         }
 
         .icon-box {
@@ -161,11 +104,6 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover .icon-box {
-            transform: scale(1.1) rotate(5deg);
         }
 
         .icon-box i {
@@ -180,88 +118,6 @@
             margin: 2rem 0;
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            transform: translateX(-100%);
-            animation: slideRight 0.5s forwards;
-        }
-
-        @keyframes slideRight {
-            to { transform: translateX(0); }
-        }
-
-        .code-section {
-            background: #1e1e1e;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            overflow: hidden;
-        }
-
-        .code-title {
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .code-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--primary), transparent);
-        }
-
-        .code-content {
-            background: #2d2d2d;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            font-family: monospace;
-            color: #e0e0e0;
-            line-height: 1.4;
-            position: relative;
-            overflow-x: auto;
-        }
-
-        .code-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
-            background-size: 200% 200%;
-            animation: shine 3s infinite linear;
-        }
-
-        @keyframes shine {
-            to { background-position: 200% 200%; }
-        }
-
-        .highlight {
-            color: var(--danger);
-            position: relative;
-            padding: 0 4px;
-        }
-
-        .highlight::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--danger);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .highlight:hover::before {
-            transform: scaleX(1);
         }
 
         .quiz-section {
@@ -278,154 +134,37 @@
             margin: 0.5rem 0;
             border-radius: 0.5rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .quiz-option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .quiz-option:hover::before {
-            left: 100%;
+        .quiz-option:hover {
+            background: #e2e8f0;
         }
 
         .quiz-option.correct {
             background: #dcfce7;
             color: var(--success);
-            transform: translateX(10px);
         }
 
         .quiz-option.wrong {
             background: #fee2e2;
             color: var(--danger);
-            transform: translateX(10px);
         }
 
-        /* Nouveau style pour la timeline */
-        .timeline {
-            position: relative;
-            margin: 4rem 0;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: var(--primary);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 30px;
-            position: relative;
-            margin: 2rem 0;
-            width: 50%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            align-self: flex-end;
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: 30px;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            position: relative;
-            width: 80%;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -15px;
-            width: 30px;
-            height: 30px;
-            background: var(--primary);
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: auto;
-            left: -15px;
-        }
-
-        /* Nouveau style pour les stats */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            font-weight: 500;
         }
 
-        .stat-label {
-            color: var(--secondary);
-            font-size: 1.1rem;
-        }
-
-        /* Améliorations des boutons */
-        button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        button:hover::before {
-            left: 100%;
+        .resource-link:hover {
+            color: var(--primary-dark);
         }
 
         footer {
@@ -434,24 +173,6 @@
             padding: 3rem 2rem;
             margin-top: 4rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--success), var(--primary));
-            animation: rainbow 5s linear infinite;
-        }
-
-        @keyframes rainbow {
-            0% { background-position-x: 0%; }
-            100% { background-position-x: 200%; }
         }
 
         @media (max-width: 768px) {
@@ -461,34 +182,150 @@
             .container {
                 padding: 1rem;
             }
-            .timeline::before {
-                left: 0;
-            }
-            .timeline-item {
-                width: 100%;
-                padding-left: 30px;
-                padding-right: 0;
-            }
-            .timeline-item:nth-child(odd) {
-                justify-content: flex-start;
-            }
-            .timeline-content {
-                width: 100%;
-            }
-            .timeline-content::before {
-                left: -15px;
-                right: auto;
-            }
+        }
+
+        .tips-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tip-icon {
+            color: var(--primary);
+            font-size: 1.25rem;
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Barre de progression -->
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🛡️ Alerte de Sécurité</h1>
+            <p style="font-size: 1.25rem; opacity: 0.9;">Découvrez comment identifier et vous protéger contre les tentatives de phishing.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="alert">
+            <h3 style="color: var(--danger); margin-bottom: 0.5rem;">
+                <i class="fas fa-shield-alt"></i> Restons Vigilants
+            </h3>
+            <p>La cybersécurité est l'affaire de tous. Chaque action préventive compte pour protéger nos données et notre organisation.</p>
+        </div>
+
+        <h2 style="margin: 3rem 0 2rem; text-align: center; font-size: 2rem;">Techniques de Phishing Courantes</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="icon-box">
+                    <i class="fas fa-link"></i>
+                </div>
+                <h3>Usurpation d'Identité</h3>
+                <p>Les attaquants se font passer pour des entreprises ou personnes de confiance pour obtenir vos informations.</p>
+            </div>
+            <div class="card">
+                <div class="icon-box">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Manipulation Psychologique</h3>
+                <p>Création d'un sentiment d'urgence ou de peur pour vous faire agir sans réfléchir.</p>
+            </div>
+            <div class="card">
+                <div class="icon-box">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Sites Frauduleux</h3>
+                <p>Utilisation de sites web qui imitent parfaitement les plateformes légitimes.</p>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2 style="margin-bottom: 2rem;">Signes d'Alerte</h2>
+            <div class="tip-item">
+                <i class="fas fa-exclamation-triangle tip-icon"></i>
+                <div>
+                    <h4>Fautes d'orthographe et erreurs</h4>
+                    <p>Les communications officielles sont généralement bien rédigées et sans erreurs.</p>
+                </div>
+            </div>
+            <div class="tip-item">
+                <i class="fas fa-envelope tip-icon"></i>
+                <div>
+                    <h4>Adresse email suspecte</h4>
+                    <p>Vérifiez attentivement l'adresse de l'expéditeur, pas seulement le nom affiché.</p>
+                </div>
+            </div>
+            <div class="tip-item">
+                <i class="fas fa-clock tip-icon"></i>
+                <div>
+                    <h4>Demandes urgentes</h4>
+                    <p>Méfiez-vous des messages qui exigent une action immédiate ou menacent de conséquences.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-section">
+            <h2 style="margin-bottom: 2rem;">Test de Vigilance</h2>
+            <div id="quiz">
+                <p style="margin-bottom: 1rem;">Que faire face à un email demandant vos identifiants bancaires ?</p>
+                <div class="quiz-option" onclick="this.classList.add('wrong')">
+                    <i class="fas fa-circle"></i> Cliquer sur le lien et vérifier si le site ressemble au site officiel
+                </div>
+                <div class="quiz-option" onclick="this.classList.add('correct')">
+                    <i class="fas fa-circle"></i> Ne pas cliquer et contacter sa banque via le numéro officiel
+                </div>
+                <div class="quiz-option" onclick="this.classList.add('wrong')">
+                    <i class="fas fa-circle"></i> Répondre à l'email pour demander plus d'informations
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin: 3rem 0 2rem; text-align: center; font-size: 2rem;">Mesures de Protection</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="icon-box" style="background: var(--success)">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Authentication Renforcée</h3>
+                <p>Activez la double authentification sur tous vos comptes importants et utilisez un gestionnaire de mots de passe.</p>
+            </div>
+            <div class="card">
+                <div class="icon-box" style="background: var(--success)">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Vérification Systématique</h3>
+                <p>Prenez l'habitude de vérifier les URLs et les expéditeurs avant toute action sensible.</p>
+            </div>
+            <div class="card">
+                <div class="icon-box" style="background: var(--success)">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Contact Direct</h3>
+                <p>En cas de doute, contactez l'organisation concernée via ses canaux officiels.</p>
+            </div>
+        </div>
     </div>
 
-    <section class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <h1>⚠️ Test de Phishing Détecté</h1>
-            <p style="font-size: 1.25rem; opacity: 0.9;">Votre vigilance est notre meilleure défense contre les cyberatta
+    <footer>
+        <p>© 2024 - Formation Cybersécurité</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Protégeons ensemble notre environnement numérique</p>
+        <div style="margin-top: 2rem;">
+            <a href="#" class="resource-link">
+                <i class="fas fa-book"></i> Guide complet de sécurité
+            </a>
+            <span style="margin: 0 1rem;">|</span>
+            <a href="#" class="resource-link">
+                <i class="fas fa-phone-alt"></i> Contact support sécurité
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
