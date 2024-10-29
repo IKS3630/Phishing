@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensibilisation à la Sécurité - Test de Phishing</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --warning: #f59e0b;
+            --success: #16a34a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f3f4f6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .alert {
+            border-left: 4px solid var(--danger);
+            background-color: #fee2e2;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .info {
+            border-left: 4px solid var(--primary);
+            background-color: #dbeafe;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .success {
+            border-left: 4px solid var(--success);
+            background-color: #dcfce7;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .tip-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            background: var(--primary);
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 24px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>Test de Phishing Détecté !</h1>
+            <p>Votre vigilance est la première ligne de défense contre les cyberattaques</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="alert">
+            <strong>Important :</strong> Si cela avait été une véritable attaque, vos informations confidentielles auraient pu être compromises.
+        </div>
+
+        <div class="info">
+            <strong>Rassurez-vous !</strong> Ce test fait partie de notre programme de sensibilisation à la sécurité. Aucune donnée n'a été collectée.
+        </div>
+
+        <div class="card">
+            <h2>Les Techniques Utilisées Dans Ce Test</h2>
+            <ul style="list-style-position: inside; margin-left: 1rem;">
+                <li>Imitation d'une page de connexion Microsoft légitime</li>
+                <li>URL trompeuse ressemblant à un domaine officiel</li>
+                <li>Création d'un sentiment d'urgence</li>
+                <li>Exploitation de la confiance dans les services courants</li>
+            </ul>
+        </div>
+
+        <h2>Comment Se Protéger ?</h2>
+        <div class="tips">
+            <div class="tip-card">
+                <h3><span class="icon">1</span> Vérifiez l'URL</h3>
+                <p>Regardez toujours attentivement l'adresse complète dans la barre de navigation avant de saisir des informations sensibles.</p>
+            </div>
+            <div class="tip-card">
+                <h3><span class="icon">2</span> Double Authentification</h3>
+                <p>Activez l'authentification à deux facteurs sur tous vos comptes importants quand c'est possible.</p>
+            </div>
+            <div class="tip-card">
+                <h3><span class="icon">3</span> Liens Suspects</h3>
+                <p>Ne cliquez jamais sur des liens dans des emails non sollicités. Accédez directement aux sites via votre navigateur.</p>
+            </div>
+            <div class="tip-card">
+                <h3><span class="icon">4</span> En Cas de Doute</h3>
+                <p>Contactez directement votre service IT ou le support officiel du service concerné par un canal de communication vérifié.</p>
+            </div>
+        </div>
+
+        <div class="success">
+            <strong>Rappel important :</strong> Le service informatique ne vous demandera JAMAIS vos identifiants par email ou messagerie instantanée.
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 - Page de sensibilisation à la sécurité</p>
+    </footer>
+</body>
+</html>
